@@ -14,11 +14,28 @@ functions = {
     "U": t.penup,
     "D": t.pendown,
 
-    "W": time.sleep
+    "W": time.sleep,
+
+    "T": t.shape,
+    "V": t.speed,
+
+    "P": t.pensize,
+    "S": t.shapesize
 }
 
 #variable = {}
 #constants = {}
+
+def prepArgs(args):
+    output = []
+    for arg in args:
+        try:
+            output.append(int(arg))
+        except:
+            output.append(arg)
+
+    print(output)
+    return output
 
 def parseLine(line):
     if line.strip() == "":
@@ -26,9 +43,11 @@ def parseLine(line):
 
     action = line.strip()[0]
 
-    assert action in functions, "Unknown Action: " + action
+    assert action in functions, f"Unknown Action: {action}"
 
-    args = [int(value) for value in line.split(" ")[1:]]
+    args = line.strip().split(" ")[1:]
+    print(args)
+    args = prepArgs(args)
 
     functions[action](*args)
 
