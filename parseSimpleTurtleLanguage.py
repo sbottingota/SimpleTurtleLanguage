@@ -1,3 +1,5 @@
+import sys
+
 import turtle as t
 import time
 
@@ -20,7 +22,9 @@ functions = {
     "V": t.speed,
 
     "P": t.pensize,
-    "S": t.shapesize
+    "S": t.shapesize,
+
+    "O": t.done
 }
 
 #variable = {}
@@ -56,4 +60,5 @@ def parseFile(path):
         for line in f.readlines():
             parseLine(line)
 
-parseFile("demoTurtleFile")
+for argv in sys.argv[1:]:
+    parseFile(argv)
