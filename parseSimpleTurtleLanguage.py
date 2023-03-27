@@ -38,7 +38,6 @@ def prepArgs(args):
         except:
             output.append(arg)
 
-    print(output)
     return output
 
 def parseLine(line):
@@ -50,7 +49,6 @@ def parseLine(line):
     assert action in functions, f"Unknown Action: {action}"
 
     args = line.strip().split(" ")[1:]
-    print(args)
     args = prepArgs(args)
 
     functions[action](*args)
