@@ -1,7 +1,9 @@
 import sys
 
-import turtle as t
+import turtle
 import time
+
+t = turtle.Turtle()
 
 functions = {
     "F": t.forward,
@@ -24,13 +26,11 @@ functions = {
     "P": t.pensize,
     "S": t.shapesize,
 
-    "O": t.done
+    "O": turtle.done
 }
 
-#variable = {}
-#constants = {}
 
-def prepArgs(args):
+def prep_args(args):
     output = []
     for arg in args:
         try:
@@ -40,7 +40,8 @@ def prepArgs(args):
 
     return output
 
-def parseLine(line):
+
+def parse_line(line):
     if line.strip() == "":
         return
 
@@ -49,14 +50,16 @@ def parseLine(line):
     assert action in functions, f"Unknown Action: {action}"
 
     args = line.strip().split(" ")[1:]
-    args = prepArgs(args)
+    args = prep_args(args)
 
     functions[action](*args)
 
-def parseFile(path):
+
+def parse_file(path):
     with open(path, "r") as f:
         for line in f.readlines():
-            parseLine(line)
+            parse_line(line)
+
 
 for argv in sys.argv[1:]:
-    parseFile(argv)
+    parse_file(argv)
